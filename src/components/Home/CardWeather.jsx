@@ -13,6 +13,8 @@ import {
     SimpleGrid,
     Skeleton
 } from '@chakra-ui/react'
+import { FaWind, FaThermometerEmpty, FaSun, FaTachometerAlt } from 'react-icons/fa';
+import StatsCard from '../../components/Home/StatsCard'
 
 export default function CardWeather({ weather, loading }) {
     const { location, current } = weather
@@ -72,32 +74,28 @@ export default function CardWeather({ weather, loading }) {
                         </Stack>
 
 
-
                         <SimpleGrid columns={2} spacing={6}>
-                            <Box>
-                                <Text fontSize={'sm'} color={'gray.500'}>
-                                    WIND
-                                </Text>
-                                <Text fontWeight={600}>{current.wind_kph}km/h</Text>
-                            </Box>
-                            <Box>
-                                <Text fontSize={'sm'} color={'gray.500'}>
-                                    FEELS LIKE
-                                </Text>
-                                <Text fontWeight={600}>{current.feelslike_c.toFixed()}&#xb0;</Text>
-                            </Box>
-                            <Box>
-                                <Text fontSize={'sm'} color={'gray.500'}>
-                                    INDEX UV
-                                </Text>
-                                <Text fontWeight={600}>{current.uv}</Text>
-                            </Box>
-                            <Box>
-                                <Text fontSize={'sm'} color={'gray.500'}>
-                                    PRESURE
-                                </Text>
-                                <Text fontWeight={600}>{current.pressure_mb} mbar</Text>
-                            </Box>
+                            <StatsCard
+                                title='WIND'
+                                stat={`${current.wind_kph}km/h`}
+                                icon={<FaWind size={20} />}
+                            />
+                            <StatsCard
+                                title='FEELS LIKE'
+                                stat={`${current.feelslike_c.toFixed()}`}
+                                icon={<FaThermometerEmpty size={20} />}
+                            />
+                            <StatsCard
+                                title='INDEX UV'
+                                stat={current.uv}
+                                icon={<FaSun size={20} />}
+                            />
+
+                            <StatsCard
+                                title='PRESSURE'
+                                stat={`${current.pressure_mb} mbar`}
+                                icon={<FaTachometerAlt size={20} />}
+                            />
                         </SimpleGrid>
 
                         <NavLink to='/nextdays'>
@@ -126,6 +124,6 @@ export default function CardWeather({ weather, loading }) {
                 </Skeleton>
             </Box>
 
-        </Center>
+        </Center >
     );
 }

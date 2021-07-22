@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, HStack, Input, useToast } from '@chakra-ui/react'
-import Proptypes from 'prop-types'
+import PropTypes from 'prop-types'
 
 const SearchForm = ({ setCity, setLoading }) => {
     const [content, setContent] = useState('')
@@ -46,8 +46,8 @@ const SearchForm = ({ setCity, setLoading }) => {
 }
 
 SearchForm.propTypes = {
-    setCity: Proptypes.func.isRequired,
-    setLoading: Proptypes.func.isRequired
+    setCity: PropTypes.func.isRequired,
+    setLoading: PropTypes.func.isRequired
 }
 
 export default SearchForm
