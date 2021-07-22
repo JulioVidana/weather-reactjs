@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, HStack, Input, useToast } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-const SearchForm = ({ setCity, setLoading }) => {
+const SearchForm = ({ setCity, loading }) => {
     const [content, setContent] = useState('')
     const toast = useToast()
 
@@ -18,7 +18,6 @@ const SearchForm = ({ setCity, setLoading }) => {
             })
             return
         }
-        setLoading(true)
         setCity(content)
         setContent('')
     }
@@ -33,6 +32,7 @@ const SearchForm = ({ setCity, setLoading }) => {
                     onChange={(e) => setContent(e.target.value)}
                 />
                 <Button
+                    isLoading={loading}
                     colorScheme='gray'
                     px="8"
                     type="submit"
@@ -47,7 +47,7 @@ const SearchForm = ({ setCity, setLoading }) => {
 
 SearchForm.propTypes = {
     setCity: PropTypes.func.isRequired,
-    setLoading: PropTypes.func.isRequired
+    loading: PropTypes.bool.isRequired
 }
 
 export default SearchForm

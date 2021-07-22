@@ -37,7 +37,10 @@ const StatsCard = ({ title, stat, icon }) => {
 
 StatsCard.propTypes = {
     title: PropTypes.string.isRequired,
-    stat: PropTypes.node.isRequired,
+    stat: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]),
     icon: PropTypes.element.isRequired
 }
 
