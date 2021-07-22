@@ -16,6 +16,7 @@ You do not need to create the .env file for this project. The KEY API is already
 
 ## File Structure
 
+```
 └── src
 	├── components
         ├── Home
