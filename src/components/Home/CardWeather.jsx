@@ -18,7 +18,7 @@ import StatsCard from '../../components/Home/StatsCard'
 
 export default function CardWeather({ weather, loading }) {
     const { location, current } = weather
-    if (!current) return null;
+    if (!current || Object.keys(current).length === 0) return null;
 
     return (
         <Center py={6}>
