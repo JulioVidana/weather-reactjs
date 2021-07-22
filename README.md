@@ -13,18 +13,3 @@ Check the live demo here 👉️ [https://weather.juliovidana.com/](https://weat
 - Views are on: `localhost:3000`
 
 You do not need to create the .env file for this project. The KEY API is already included.
-
-## File Structure
-
-```
-└── src
-	├── components
-        ├── Home
-        ├── NextDays
-	├── context
-	├── Pages
-        ├── Home
-        ├── NextDays
-	├── services
-	├── App.jsx
-	├── main.jsx
