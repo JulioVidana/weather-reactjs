@@ -6,13 +6,20 @@ import {
     VStack,
     HStack,
     Button,
-    Stack
+    Spinner
 } from '@chakra-ui/react'
 import WeatherContext from '../../context/WeatherContext'
 import ForecastList from '../../components/NextDays/List'
 import { FaAngleLeft } from 'react-icons/fa'
+import { useWeather } from '../../hooks/useWeather'
+
 const NextDays = () => {
-    const { weather } = useContext(WeatherContext)
+    const { weather, saveWeather } = useContext(WeatherContext)
+
+    if (Object.keys(weather).length === 0) {
+        useWeather({ city: localStorage.getItem('lastSearch'), saveWeather })
+    }
+
     return (
         <>
             {Object.keys(weather).length !== 0 ? (
@@ -27,30 +34,34 @@ const NextDays = () => {
                     <Center py={6}>
                         <ForecastList weather={weather} />
                     </Center>
-                    <VStack p={4}>
-                        <HStack>
-                            <NavLink to='/'>
-                                <Button
-                                    leftIcon={<FaAngleLeft />}
-                                    colorScheme='blue'
-                                    _hover={{
-                                        transform: 'translateY(-2px)',
-                                        boxShadow: 'lg',
-                                    }}
-                                >
-                                    Back
-                                </Button>
-
-                            </NavLink>
-                        </HStack>
-                    </VStack>
-
                 </>
             ) : (
-                <p>loading...</p>
+                <VStack p={9}>
+                    <HStack mt='5'>
+                        <Spinner size="xl" />
+                    </HStack>
+
+                </VStack>
             )
 
             }
+            <VStack p={4}>
+                <HStack>
+                    <NavLink to='/'>
+                        <Button
+                            leftIcon={<FaAngleLeft />}
+                            colorScheme='blue'
+                            _hover={{
+                                transform: 'translateY(-2px)',
+                                boxShadow: 'lg',
+                            }}
+                        >
+                            Back
+                        </Button>
+
+                    </NavLink>
+                </HStack>
+            </VStack>
         </>
     )
 }

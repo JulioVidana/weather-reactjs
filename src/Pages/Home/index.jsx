@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import SearchForm from '../../components/Home/searchForm'
 import CardWeather from '../../components/Home/CardWeather'
 import { VStack } from '@chakra-ui/react'
 import { useToast } from '@chakra-ui/react'
 import { useWeather } from '../../hooks/useWeather'
+import WeatherContext from '../../context/WeatherContext'
 
 const Home = () => {
-    const [city, setCity] = useState('')
+    const { weather, saveWeather, city, setCity } = useContext(WeatherContext)
     const alert = useToast()
-    const { loading, weather } = useWeather({ city, setCity, alert })
+    //Custom hook to get data from API
+    const { loading } = useWeather({ city, alert, saveWeather })
 
     return (
         <>

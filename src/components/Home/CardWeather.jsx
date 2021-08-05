@@ -13,10 +13,10 @@ import {
     SimpleGrid,
     Skeleton
 } from '@chakra-ui/react'
-import { FaWind, FaThermometerEmpty, FaSun, FaTachometerAlt } from 'react-icons/fa';
+import { FaWind, FaThermometerEmpty, FaSun, FaTachometerAlt } from 'react-icons/fa'
 import StatsCard from '../../components/Home/StatsCard'
 
-export default function CardWeather({ weather, loading }) {
+export default function CardWeather({ weather = {}, loading }) {
     const { location, current } = weather
     if (!current || Object.keys(current).length === 0) return null;
 
@@ -31,7 +31,6 @@ export default function CardWeather({ weather, loading }) {
                 p={6}
                 textAlign={'center'}>
                 <Skeleton isLoaded={!loading}>
-
                     <Text fontSize='xl'>
                         <strong>{location.name}</strong>, {location.country}
                     </Text>
@@ -125,5 +124,5 @@ export default function CardWeather({ weather, loading }) {
             </Box>
 
         </Center >
-    );
+    )
 }

@@ -1,24 +1,18 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState } from 'react'
 
 const Context = createContext({})
 
 export function WeatherContextProvider({ children }) {
+    const cityStorage = localStorage.getItem('lastSearch')
     const [weather, setWeather] = useState({})
-
-    //if the page is reload -> get value from localStorage
-    useEffect(() => {
-        if (localStorage.getItem('lastSearch')) {
-            const lastSearch = JSON.parse(localStorage.getItem('lastSearch'))
-            setWeather(lastSearch)
-        }
-    }, [])
+    const [city, setCity] = useState(cityStorage)
 
     const saveWeather = value => {
         setWeather(value)
-        localStorage.setItem('lastSearch', JSON.stringify(value))
+        localStorage.setItem('lastSearch', JSON.stringify(value.location.name))
     }
     return (
-        <Context.Provider value={{ weather, saveWeather }}>
+        <Context.Provider value={{ weather, saveWeather, city, setCity }}>
             {children}
         </Context.Provider>
     )
